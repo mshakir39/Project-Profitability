@@ -5,6 +5,8 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "resolveJsonModule": true,
+
     "noPropertyAccessFromIndexSignature": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },

@@ -1,0 +1,26 @@
+[
+    {
+      " Allocated Budget": "Allocated Budget",
+      "month1": "80%",
+      "month2": "111%",
+      "month3": "100%"
+    },
+    {
+      "Budget Profitablility Goal": "Budget Profitablility Goal",
+      "month1": "68%",
+      "month2": "94.44%",
+      "month3": "85%"
+    },
+    {
+      "Billable Spent": "Billable Spent",
+      "month1": "120%",
+      "month2": "222.22%",
+      "month3": "50%"
+    },
+    {
+      "Profitability %": "Profitability %",
+      "month1": "-50%",
+      "month2": "-100%",
+      "month3": "50%"
+    }
+  ]

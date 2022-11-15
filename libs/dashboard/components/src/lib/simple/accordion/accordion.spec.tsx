@@ -7,6 +7,6 @@ describe("Accordion", () => {
     const { baseElement } = render(
       <Accordion label="Test Instance" dataTestId="test-instance" />
     );
-    expect(baseElement).toBeTruthy();
+    expect(baseElement).toBeInTheDocument();
   });
 });

@@ -3,7 +3,7 @@ import { getNumber } from "../../util/getNumber";
 import AccordionComponent from "../simple/accordion/accordion";
 import ReactTable from "../simple/table/table";
 import TextInput from "../simple/text-input/text-input";
-import TextField, { textFieldClasses } from "@mui/material/TextField";
+import Data from "../../../storybook_public/config/profitabilityStubData.json";
 
 // import styles from "./project-profitability.module.css";
 /* eslint-disable-next-line */
@@ -12,32 +12,7 @@ export interface ProjectProfitabilityProps {}
 const style = {
   display: "flex",
 };
-const tableData = [
-  {
-    " Allocated Budget": "Allocated Budget",
-    month1: "80%",
-    month2: "111%",
-    month3: "100%",
-  },
-  {
-    "Budget Profitablility Goal": "Budget Profitablility Goal",
-    month1: "68%",
-    month2: "94.44%",
-    month3: "85%",
-  },
-  {
-    "Billable Spent": "Billable Spent",
-    month1: "120%",
-    month2: "222.22%",
-    month3: "50%",
-  },
-  {
-    "Profitability %": "Profitability %",
-    month1: "-50%",
-    month2: "-100%",
-    month3: "50%",
-  },
-];
+
 export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
   const [enableField, setEnableField] = useState(true);
   const [fieldColor, setFieldColor] = useState("black");
@@ -47,6 +22,7 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
     totalProfitMargin: "",
     profitMarginGoal: "",
   });
+
   useEffect(() => {
     if (
       getNumber(inputData.totalProfitMargin) < 0 ||
@@ -69,13 +45,13 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
     }
 
     const totalAllocatedBudget =
-      getNumber(tableData[0].month1) +
-      getNumber(tableData[0].month2) +
-      getNumber(tableData[0].month3);
+      getNumber(Data[0].month1) +
+      getNumber(Data[0].month2) +
+      getNumber(Data[0].month3);
     const totalBillable =
-      getNumber(tableData[2].month1) +
-      getNumber(tableData[2].month2) +
-      getNumber(tableData[2].month3);
+      getNumber(Data[2].month1) +
+      getNumber(Data[2].month2) +
+      getNumber(Data[2].month3);
 
     const totalProfitMargin = Math.round(
       totalAllocatedBudget - totalBillable / totalAllocatedBudget
@@ -87,8 +63,19 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
       totalProfitMargin: totalProfitMargin + "%",
     };
 
-    setInputData({ ...dummy });
+    setInputData((prev) => ({
+      ...prev,
+      ...dummy,
+    }));
   }, [inputData.profitMarginGoal, inputData.totalProfitMargin]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <AccordionComponent
@@ -97,6 +84,7 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
     >
       <div style={style}>
         <TextInput
+          name="totalAllocatedBudget"
           disabled
           startAdornment="$"
           label="Total Allocated Budget"
@@ -105,6 +93,7 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
           value={inputData.totalAllocatedBudget}
         />
         <TextInput
+          name="totalBillable"
           startAdornment="$"
           disabled
           label="Total Billable"
@@ -114,6 +103,7 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
         />
 
         <TextInput
+          name="totalProfitMargin"
           disabled
           label="Total Profit Margin"
           dataTestId=""
@@ -127,18 +117,20 @@ export const ProjectProfitability: React.FC<ProjectProfitabilityProps> = () => {
         />
         <div onDoubleClick={() => setEnableField(false)}>
           <TextInput
+            name="profitMarginGoal"
             disabled={enableField}
             label="Profit Margin Goal"
             dataTestId=""
             sx={{ width: "137px", marginRight: "30px" }}
             value={inputData.profitMarginGoal}
+            onChange={handleChange}
           />
         </div>
       </div>
       <ReactTable
         headers={["", "Month1", "Month2", "Month3"]}
         inputData={inputData}
-        data={tableData}
+        data={Data}
         dataTestId="react-table"
       />
     </AccordionComponent>

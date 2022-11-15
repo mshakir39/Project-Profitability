@@ -47,6 +47,7 @@ export const TextInput: React.FC<StandardTextInputProps> = (props) => {
         style: inputStyle,
       }}
       data-testid={dataTestId}
+      data-cy="text-input"
       {...rest}
       variant="standard"
       sx={(theme) => ({

@@ -5,6 +5,6 @@ import AcceptButton from "./accept-button";
 describe("AcceptButton", () => {
   it("should render successfully", () => {
     const { baseElement } = render(<AcceptButton />);
-    expect(baseElement).toBeTruthy();
+    expect(baseElement).toBeInTheDocument();
   });
 });

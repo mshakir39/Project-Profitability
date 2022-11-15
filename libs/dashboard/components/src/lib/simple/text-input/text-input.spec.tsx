@@ -7,6 +7,6 @@ describe("TextInput", () => {
     const { baseElement } = render(
       <TextInput label="Test Instance" dataTestId="test-instance" />
     );
-    expect(baseElement).toBeTruthy();
+    expect(baseElement).toBeInTheDocument();
   });
 });
