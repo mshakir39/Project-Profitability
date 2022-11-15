@@ -13,5 +13,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: "Example Label",
   required: true,
-  dataTestId: "example-test-id",
+  dataTestId: "input-test-id",
 };
