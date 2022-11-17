@@ -19,19 +19,25 @@ export interface StandardTextInputProps {
   variant?: string;
   size?: "medium" | "small" | undefined;
   startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
+
   disabled?: boolean;
+  step?: string;
+  min?: string;
 }
 
 export const TextInput: React.FC<StandardTextInputProps> = (props) => {
   // Separating props for a mix of usages, with defaults for sx.
   const {
     startAdornment,
+    endAdornment,
     helperText,
     dataTestId,
     sx,
     labelStyle,
     inputStyle,
     disabled,
+
     ...rest
   } = props;
   const localSx = { ...{ width: "100%", height: "54px" }, ...sx };
@@ -44,6 +50,7 @@ export const TextInput: React.FC<StandardTextInputProps> = (props) => {
       }}
       InputProps={{
         startAdornment,
+        endAdornment,
         style: inputStyle,
       }}
       data-testid={dataTestId}

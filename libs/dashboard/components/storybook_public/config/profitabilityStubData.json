@@ -7,9 +7,9 @@
     },
     {
       "Budget Profitablility Goal": "Budget Profitablility Goal",
-      "month1": "68%",
-      "month2": "94.44%",
-      "month3": "85%"
+      "month1": "0%",
+      "month2": "0%",
+      "month3": "0%"
     },
     {
       "Billable Spent": "Billable Spent",
@@ -19,8 +19,8 @@
     },
     {
       "Profitability %": "Profitability %",
-      "month1": "-50%",
-      "month2": "-100%",
-      "month3": "50%"
+      "month1": "0",
+      "month2": "0",
+      "month3": "0"
     }
   ]

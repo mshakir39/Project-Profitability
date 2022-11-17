@@ -29,9 +29,9 @@ export const ReactTable: React.FC<IReactTable> = (props) => {
       }}
       data-testid={dataTestId}
     >
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650 }} aria-label="simple table" data-cy="table">
         <TableHead style={{ background: "#f7ece2" }}>
-          <TableRow>
+          <TableRow data-cy="table-header-row">
             {headers.map((headerTitle: string, index: number) => (
               <TableCell data-testid="table-header-cell" key={index}>
                 {headerTitle}
@@ -48,6 +48,7 @@ export const ReactTable: React.FC<IReactTable> = (props) => {
             >
               {Object.entries(obj).map(([key]) => {
                 let Color = "";
+
                 const value = getNumber(obj[key]);
                 if (indexRow === 3 && /\d/.test(obj[key])) {
                   if (value < 0 || value === 0) {
@@ -73,6 +74,21 @@ export const ReactTable: React.FC<IReactTable> = (props) => {
                     Color = "#f6e7b9";
                   }
                 }
+                let celVal;
+                if (String(obj[key]).includes("$") && /\d/.test(obj[key])) {
+                  celVal = obj[key].split("$")[1];
+                  celVal = Number(celVal).toFixed(2);
+                  celVal = "$" + celVal;
+                } else if (
+                  String(obj[key]).includes("%") &&
+                  /\d/.test(obj[key])
+                ) {
+                  celVal = obj[key].split("%")[0];
+                  celVal = Number(celVal).toFixed(2);
+                  celVal = celVal + "%";
+                } else {
+                  celVal = obj[key];
+                }
 
                 return (
                   <TableCell
@@ -80,7 +96,7 @@ export const ReactTable: React.FC<IReactTable> = (props) => {
                     sx={{ background: `${Color}` }}
                     key={key}
                   >
-                    {obj[key]}
+                    {celVal}
                   </TableCell>
                 );
               })}
