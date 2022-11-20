@@ -1,21 +1,21 @@
 [
     {
       " Allocated Budget": "Allocated Budget",
-      "month1": "80%",
-      "month2": "111%",
-      "month3": "100%"
+      "month1": "$80",
+      "month2": "$111",
+      "month3": "$100"
     },
     {
       "Budget Profitablility Goal": "Budget Profitablility Goal",
-      "month1": "0%",
-      "month2": "0%",
-      "month3": "0%"
+      "month1": "$0",
+      "month2": "$0",
+      "month3": "$0"
     },
     {
       "Billable Spent": "Billable Spent",
-      "month1": "120%",
-      "month2": "222.22%",
-      "month3": "50%"
+      "month1": "$120",
+      "month2": "$222.22",
+      "month3": "$50"
     },
     {
       "Profitability %": "Profitability %",

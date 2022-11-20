@@ -3,10 +3,14 @@ export const getNumber: any = (number: string) => {
     /\d/.test(number) &&
     number !== "" &&
     number !== undefined &&
-    typeof number === "string" &&
-    number.includes("%")
+    typeof number === "string"
   ) {
-    return Number(number && number.split("%")[0]);
+    if (number.includes("%")) {
+      return Number(number && number.split("%")[0]);
+    } else {
+      return Number(number && number.split("$")[1]);
+    }
   }
+
   return number;
 };

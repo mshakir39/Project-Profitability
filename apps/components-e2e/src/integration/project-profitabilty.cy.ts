@@ -25,7 +25,13 @@ describe("components", () => {
   });
 
   it("should Calculate Budget Profitability Goal on Change of Profit Margin Goal ", () => {
+    const itemsAfter = ["$68.00", "$94.35", "$85.00"];
+    const itemsBefore = ["$0.00", "$0.00", "$0.00"];
+
     cy.get('[data-cy="text-input"]').find("input").should("be.disabled");
+
+    testCellText(itemsBefore);
+
     cy.get('[data-cy="text-input"]')
       .find("input")
       .eq(3)
@@ -33,14 +39,18 @@ describe("components", () => {
       .should("not.be.disabled")
       .type("15", { force: true });
 
-    const items = ["$68.00", "$94.35", "$85.00"];
-    items.forEach((item) => {
-      cy.get("table").contains("td", item);
-    });
+    testCellText(itemsAfter);
 
     cy.get('[data-cy="text-input"]').find("input").eq(3).clear();
-    items.forEach((item) => {
-      cy.get("table").contains("td", item).should("not.exist");
-    });
+
+    testCellText(itemsBefore);
   });
 });
+
+function testCellText(items: Array<string>) {
+  cy.get("table tbody tr")
+    .filter((k, tr) => (<HTMLElement>tr.children[1]).innerText === items[0])
+    .should("contain", items[0])
+    .and("contain", items[1])
+    .and("contain", items[2]);
+}
